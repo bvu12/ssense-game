@@ -10,7 +10,7 @@ export default function Home() {
     "Long ass name of a product thurighfdkjshljkasbfjksdkjfhadskjfhksdahfkjsdahkfh";
   const price = 1590;
   return (
-    <div className="flex h-screen gap-5 p-5">
+    <div className="flex h-screen gap-5 p-5 md:gap-10 md:p-10 xl:gap-10 2xl:px-44 2xl:py-24">
       <Card
         image_url={image_url}
         brand_name={brand_name}

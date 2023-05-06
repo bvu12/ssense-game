@@ -13,7 +13,17 @@ const Card = ({ image_url, brand_name, product_title, price }: CardProps) => {
       <div
         style={{ backgroundImage: `url(${image_url})` }}
         className="h-1/2 w-full rounded-md bg-cover bg-center bg-no-repeat md:h-3/4"
-      ></div>
+      >
+        <div className="h-full p-12">
+          <button className="h-2/5 w-full transition delay-150 duration-300 ease-in-out hover:-translate-y-4 hover:scale-110 hover:bg-white hover:bg-opacity-25">
+            Higher
+          </button>
+          <div className="h-1/5"></div>
+          <button className="h-2/5 w-full transition delay-150 duration-300 ease-in-out hover:translate-y-4 hover:scale-110 hover:bg-white hover:bg-opacity-25">
+            Lower
+          </button>
+        </div>
+      </div>
       <div className="flex h-1/2 flex-col break-all px-6 py-4 md:h-1/4">
         <div className="mb-2 text-lg font-bold md:text-xl">{brand_name}</div>
         <p className="flex-grow text-xs text-gray-700 md:text-base">
