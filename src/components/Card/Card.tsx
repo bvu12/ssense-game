@@ -1,28 +1,29 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-type CardProps = {
+export type CardProps = {
   image_url: string;
   brand_name: string;
   product_title: string;
   price?: number;
+  is_clickable?: boolean;
+  clickable_element?: ReactNode;
 };
 
-const Card = ({ image_url, brand_name, product_title, price }: CardProps) => {
+const Card = ({
+  image_url,
+  brand_name,
+  product_title,
+  price,
+  is_clickable,
+  clickable_element,
+}: CardProps) => {
   return (
     <div className="h-full w-full rounded object-fill shadow-xl">
       <div
         style={{ backgroundImage: `url(${image_url})` }}
         className="h-1/2 w-full rounded-md bg-cover bg-center bg-no-repeat md:h-3/4"
       >
-        <div className="h-full p-12">
-          <button className="h-2/5 w-full transition delay-150 duration-300 ease-in-out hover:-translate-y-4 hover:scale-110 hover:bg-white hover:bg-opacity-25">
-            Higher
-          </button>
-          <div className="h-1/5"></div>
-          <button className="h-2/5 w-full transition delay-150 duration-300 ease-in-out hover:translate-y-4 hover:scale-110 hover:bg-white hover:bg-opacity-25">
-            Lower
-          </button>
-        </div>
+        {is_clickable && clickable_element}
       </div>
       <div className="flex h-1/2 flex-col break-all px-6 py-4 md:h-1/4">
         <div className="mb-2 text-lg font-bold md:text-xl">{brand_name}</div>

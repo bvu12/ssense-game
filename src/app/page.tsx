@@ -1,4 +1,7 @@
+"use client";
+
 import Card from "@/components/Card/Card";
+import ClickableCard from "@/components/Card/ClickableCard";
 
 export default function Home() {
   const image_url =
@@ -17,10 +20,13 @@ export default function Home() {
         product_title={product_title}
         price={price}
       />
-      <Card
+      <ClickableCard
         image_url={image_url2}
         brand_name={brand_name}
         product_title={product_title}
+        is_clickable={true}
+        on_click_higher={() => alert("guessed higher")}
+        on_click_lower={() => alert("gussed lower")}
       />
     </div>
   );
