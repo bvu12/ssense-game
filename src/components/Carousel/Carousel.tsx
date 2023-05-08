@@ -87,7 +87,12 @@ const Carousel = ({ slide_urls }: CarouselProps) => {
               key={index}
               className="carousel-item h-[40rem] touch-pan-x snap-x snap-mandatory scroll-smooth transition delay-150 duration-300 ease-in-out hover:scale-110"
             >
-              <a href={slide_url} className="z-0 block h-[36rem] w-[18rem]">
+              <a
+                href={slide_url}
+                className="z-0 block h-[36rem] w-[18rem]"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <Card
                   image_url={slide_url}
                   brand_name={"brand_name"}
