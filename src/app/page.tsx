@@ -10,6 +10,8 @@ export default function Home() {
   const image_url2 =
     "https://images.unsplash.com/photo-1675714203232-683124186564?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=906&q=80";
   const image_url3 =
+    "https://images.unsplash.com/photo-1683220642973-a4d0ca134714?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80";
+  const image_url4 =
     "https://images.unsplash.com/photo-1683217617813-9c77d57028f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
   const brand_name = "Long ass name for a brandsfhdsjkfhjksdhfjksdh";
   const product_title =
@@ -37,10 +39,15 @@ export default function Home() {
   //   );
   // };
 
-  const slides = [image_url3, image_url2, image_url3, image_url2, image_url];
-  return (
-    <div className="max-w-lg">
-      <Carousel slide_urls={slides} />
-    </div>
-  );
+  const slides = [
+    image_url,
+    image_url2,
+    image_url3,
+    image_url4,
+    image_url,
+    image_url2,
+    image_url3,
+    image_url4,
+  ];
+  return <Carousel slide_urls={slides} />;
 }

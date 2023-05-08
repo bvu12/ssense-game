@@ -1,71 +1,103 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Card from "../Card/Card";
 
 type CarouselProps = {
   slide_urls: string[];
-  auto_slide?: boolean;
-  auto_slide_interval?: number;
 };
 
-// Followed tutorial: https://www.youtube.com/watch?v=XJSOgV4VELk
+// From: https://robkendal.co.uk/blog/how-to-build-a-multi-image-carousel-in-react-and-tailwind
 
-const Carousel = ({
-  slide_urls,
-  auto_slide = false,
-  auto_slide_interval = 3000,
-}: CarouselProps) => {
-  const images = slide_urls.map((s, i) => {
-    return <img key={i} src={s} />;
-  });
+const Carousel = ({ slide_urls }: CarouselProps) => {
+  const maxScrollWidth = useRef(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const carousel = useRef<any>(null);
 
-  const [curr, setCurr] = useState(0);
+  const movePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex((prevState) => prevState - 1);
+    }
+  };
 
-  const prev = () =>
-    setCurr((curr) => (curr === 0 ? images.length - 1 : curr - 1));
+  const moveNext = () => {
+    // We cap the number of times we can moveNext based on how many offsetWidths we've moved so far
+    if (
+      carousel.current !== null &&
+      carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current
+    ) {
+      setCurrentIndex((prevState) => prevState + 1);
+    }
+  };
 
-  const next = () =>
-    setCurr((curr) => (curr === images.length - 1 ? 0 : curr + 1));
+  const isDisabled = (direction: string) => {
+    if (direction === "prev") {
+      return currentIndex <= 0;
+    }
 
+    if (direction === "next" && carousel.current !== null) {
+      return (
+        carousel.current.offsetWidth * currentIndex >= maxScrollWidth.current
+      );
+    }
+
+    return false;
+  };
+
+  // Move the scroll one offset
+  // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollLeft
   useEffect(() => {
-    if (!auto_slide) return;
-    const slide_interval = setInterval(next, auto_slide_interval);
-    return () => clearInterval(slide_interval);
+    if (carousel !== null && carousel.current !== null) {
+      carousel.current.scrollLeft = carousel.current.offsetWidth * currentIndex;
+    }
+  }, [currentIndex]);
+
+  // On first render get the carousel element's total scrollable content width minus the currently visible offset width value
+  // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollWidth
+  // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetWidth
+  useEffect(() => {
+    maxScrollWidth.current = carousel.current
+      ? carousel.current.scrollWidth - carousel.current.offsetWidth
+      : 0;
   }, []);
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="carousel relative m-4 max-w-2xl overflow-hidden">
+      <div className="carousel-button top left absolute flex h-full w-full justify-between">
+        <button
+          onClick={movePrev}
+          className="z-10 m-0 h-full w-10 p-0 text-center text-white opacity-75 transition-all duration-300 ease-in-out hover:bg-blue-900/75 hover:opacity-100 disabled:cursor-not-allowed disabled:opacity-25"
+          disabled={isDisabled("prev")}
+        >
+          Prev
+        </button>
+        <button
+          onClick={moveNext}
+          className="z-10 m-0 h-full w-10 p-0 text-center text-white opacity-75 transition-all duration-300 ease-in-out hover:bg-blue-900/75 hover:opacity-100 disabled:cursor-not-allowed disabled:opacity-25"
+          disabled={isDisabled("next")}
+        >
+          Next
+        </button>
+      </div>
       <div
-        className="flex transition-transform duration-500"
-        style={{ transform: `translateX(-${curr * 100}%)` }}
+        ref={carousel}
+        className="carousel-container relative z-0 flex touch-pan-x snap-x snap-mandatory gap-5 overflow-hidden scroll-smooth"
       >
-        {images}
-      </div>
-      <div className="absolute inset-0 flex items-center justify-between p-4">
-        <button
-          onClick={prev}
-          className="rounded-full bg-white/80 p-1 text-gray-800 opacity-80 shadow hover:bg-white"
-        >
-          left
-        </button>
-        <button
-          onClick={next}
-          className="rounded-full bg-white/80 p-1 text-gray-800 opacity-80 shadow hover:bg-white"
-        >
-          right
-        </button>
-      </div>
-      <div className="absolute bottom-4 left-0 right-0">
-        <div className="flex items-center justify-center gap-2">
-          {images.map((_, i) => {
-            return (
-              <div
-                key={i}
-                className={`h-3 w-3 rounded-full bg-white transition-all ${
-                  curr === i ? "p-2" : "bg-opacity-50"
-                }`}
-              ></div>
-            );
-          })}
-        </div>
+        {slide_urls.map((slide_url, index) => {
+          return (
+            <div
+              key={index}
+              className="carousel-item h-[40rem] touch-pan-x snap-x snap-mandatory scroll-smooth transition delay-150 duration-300 ease-in-out hover:scale-110"
+            >
+              <a href={slide_url} className="z-0 block h-[36rem] w-[18rem]">
+                <Card
+                  image_url={slide_url}
+                  brand_name={"brand_name"}
+                  product_title={"product_title"}
+                  price={99}
+                />
+              </a>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
