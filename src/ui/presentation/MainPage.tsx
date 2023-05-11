@@ -5,6 +5,8 @@ import ClickableCard from "../basic/Card/ClickableCard";
 type MainPageProps = {
   product_a: Product;
   product_b: Product;
+  onGuessHigher: () => void;
+  onGuessLower: () => void;
 };
 
 function getSsenseImageUrl(product: Product) {
@@ -25,7 +27,12 @@ function getSsenseImageUrl(product: Product) {
   return base_image_url + from_ssense_cdn + suffix;
 }
 
-const MainPage = ({ product_a, product_b }: MainPageProps) => {
+const MainPage = ({
+  product_a,
+  product_b,
+  onGuessHigher,
+  onGuessLower,
+}: MainPageProps) => {
   return (
     <div className="flex h-screen gap-5 p-5 md:gap-10 md:p-10 xl:gap-10 2xl:px-44 2xl:py-24">
       <Card
@@ -39,8 +46,8 @@ const MainPage = ({ product_a, product_b }: MainPageProps) => {
         brand_name={product_b.brand.name.en}
         product_title={product_b.name.en}
         is_clickable={true}
-        on_click_higher={() => alert("guessed higher")}
-        on_click_lower={() => alert("gussed lower")}
+        on_click_higher={() => onGuessHigher()}
+        on_click_lower={() => onGuessLower()}
       />
     </div>
   );
