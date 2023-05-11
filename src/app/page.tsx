@@ -4,7 +4,6 @@ import { Product } from "@/interfaces";
 import { useEffect, useState } from "react";
 import MainPage from "@/ui/presentation/MainPage/MainPage";
 import { shuffle } from "@/helpers";
-import { Transition } from "@headlessui/react";
 import { useTimeoutFn } from "react-use";
 
 export default function Home() {
@@ -63,8 +62,8 @@ export default function Home() {
         <h1>loading!</h1>
       ) : (
         <MainPage
-          product_a={products[productIndex]}
-          product_b={products[productIndex + 1]}
+          givenProduct={products[productIndex]}
+          unknownProduct={products[productIndex + 1]}
           onGuessHigher={onGuessHigher}
           onGuessLower={onGuessLower}
           isShowingTransition={isShowingTransition}

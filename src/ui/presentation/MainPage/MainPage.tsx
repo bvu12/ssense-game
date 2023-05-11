@@ -7,8 +7,8 @@ export type MainPageProps = MainPageCardGroupProps &
   MainPageTransitionCheckProps;
 
 const MainPage = ({
-  product_a,
-  product_b,
+  givenProduct,
+  unknownProduct,
   onGuessHigher,
   onGuessLower,
   isShowingTransition,
@@ -16,8 +16,8 @@ const MainPage = ({
   return (
     <div className="relative">
       <MainPageCardGroup
-        product_a={product_a}
-        product_b={product_b}
+        givenProduct={givenProduct}
+        unknownProduct={unknownProduct}
         onGuessHigher={onGuessHigher}
         onGuessLower={onGuessLower}
       />
