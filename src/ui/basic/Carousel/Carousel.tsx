@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+
 import Card from "../Card/Card";
 
 type CarouselProps = {

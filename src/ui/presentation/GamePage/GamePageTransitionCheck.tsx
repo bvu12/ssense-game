@@ -1,12 +1,12 @@
 import { Transition } from "@headlessui/react";
 
-export type MainPageTransitionCheckProps = {
+export type GamePageTransitionCheckProps = {
   isShowingTransition: boolean;
 };
 
-const MainPageTransitionCheck = ({
+const GamePageTransitionCheck = ({
   isShowingTransition,
-}: MainPageTransitionCheckProps) => {
+}: GamePageTransitionCheckProps) => {
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
       <div className="h-32 w-32">
@@ -42,4 +42,4 @@ const MainPageTransitionCheck = ({
   );
 };
 
-export default MainPageTransitionCheck;
+export default GamePageTransitionCheck;

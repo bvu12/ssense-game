@@ -1,12 +1,14 @@
 "use client";
 
-import { Product } from "@/interfaces";
 import { useEffect, useState } from "react";
-import MainPage from "@/ui/presentation/MainPage/MainPage";
+
+import GamePage from "@/ui/presentation/GamePage/GamePage";
+import { Product } from "@/interfaces";
 import { shuffle } from "@/helpers";
 import { useTimeoutFn } from "react-use";
 
 export default function Home() {
+  const [isGameOver, setIsGameOver] = useState(false);
   const [isShowingTransition, setIsShowingTransition] = useState(false);
   let [, , resetIsShowingTransition] = useTimeoutFn(
     () => setIsShowingTransition(false),
@@ -28,7 +30,7 @@ export default function Home() {
       resetIsShowingTransition();
       setProductIndex((previousProductIndex) => previousProductIndex + 1);
     } else {
-      // alert("Try again!");
+      setIsGameOver(true);
     }
   }
 
@@ -42,7 +44,7 @@ export default function Home() {
       resetIsShowingTransition();
       setProductIndex((previousProductIndex) => previousProductIndex + 1);
     } else {
-      // alert("Try again!");
+      setIsGameOver(true);
     }
   }
 
@@ -60,8 +62,10 @@ export default function Home() {
     <>
       {isLoading ? (
         <h1>loading!</h1>
+      ) : isGameOver ? (
+        <h1>gameover!</h1>
       ) : (
-        <MainPage
+        <GamePage
           givenProduct={products[productIndex]}
           unknownProduct={products[productIndex + 1]}
           onGuessHigher={onGuessHigher}

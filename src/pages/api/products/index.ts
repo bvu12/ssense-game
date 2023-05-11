@@ -1,6 +1,7 @@
-import { NextApiResponse, NextApiRequest } from "next";
-import { ssense_products } from "@/backend/ssense_products";
+import { NextApiRequest, NextApiResponse } from "next";
+
 import { Product } from "@/interfaces";
+import { ssense_products } from "@/backend/ssense_products";
 
 export default function handler(
   _req: NextApiRequest,

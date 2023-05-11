@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
 import Card, { CardProps } from "./Card";
+
+import React from "react";
 
 type ClickableButtonGroupProps = {
   on_click_higher: () => void;

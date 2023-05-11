@@ -1,9 +1,8 @@
-import { Product } from "@/interfaces";
-import { MainPageProps } from "./MainPage";
 import Card from "@/ui/basic/Card/Card";
 import ClickableCard from "@/ui/basic/Card/ClickableCard";
+import { Product } from "@/interfaces";
 
-export type MainPageCardGroupProps = {
+export type GamePageCardGroupProps = {
   givenProduct: Product;
   unknownProduct: Product;
   onGuessHigher: () => void;
@@ -28,12 +27,12 @@ function getSsenseImageUrl(product: Product) {
   return base_image_url + from_ssense_cdn + suffix;
 }
 
-const MainPageCardGroup = ({
+const GamePageCardGroup = ({
   givenProduct,
   unknownProduct,
   onGuessHigher,
   onGuessLower,
-}: MainPageCardGroupProps) => {
+}: GamePageCardGroupProps) => {
   return (
     <div className="flex h-screen gap-5 p-5 md:gap-10 md:p-10 xl:gap-10 2xl:px-44 2xl:py-24">
       <Card
@@ -54,4 +53,4 @@ const MainPageCardGroup = ({
   );
 };
 
-export default MainPageCardGroup;
+export default GamePageCardGroup;
