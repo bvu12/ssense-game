@@ -1,9 +1,7 @@
-import GamePageCardGroup, { GamePageCardGroupProps } from "./GamePageCardGroup";
-import GamePageTransitionCheck, {
-  GamePageTransitionCheckProps,
-} from "./GamePageTransitionCheck";
 import { useContext, useState } from "react";
 
+import GamePageCardGroup from "./GamePageCardGroup";
+import GamePageTransitionCheck from "./GamePageTransitionCheck";
 import { GameStateContext } from "../SsenseHigherLowerGame/SsenseHigherLowerGame";
 import { Product } from "@/interfaces";
 import { useTimeoutFn } from "react-use";
@@ -13,7 +11,8 @@ export type GamePageProps = {
 };
 
 const GamePage = ({ products }: GamePageProps) => {
-  const { productIndex, setProductIndex } = useContext(GameStateContext);
+  const { isGameOver, setIsGameOver, productIndex, setProductIndex } =
+    useContext(GameStateContext);
   const givenProduct = products[productIndex];
   const unknownProduct = products[productIndex + 1];
 
@@ -37,7 +36,7 @@ const GamePage = ({ products }: GamePageProps) => {
       resetIsShowingTransition();
       setProductIndex((previousProductIndex) => previousProductIndex + 1);
     } else {
-      // setIsGameOver(true);
+      setIsGameOver(true);
     }
   }
 

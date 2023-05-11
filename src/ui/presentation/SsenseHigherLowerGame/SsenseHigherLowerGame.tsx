@@ -26,11 +26,18 @@ type SsenseHigherLowerGameProps = {
 };
 
 const SsenseHigherLowerGame = ({ products }: SsenseHigherLowerGameProps) => {
-  const { isGameOver } = useGameValues();
+  const { isGameOver, setIsGameOver, productIndex, setProductIndex } =
+    useGameValues();
 
   return (
-    <GameStateContext.Provider value={useGameValues()}>
-      {isGameOver ? <GameOverPage /> : <GamePage products={products} />}
+    <GameStateContext.Provider
+      value={{ isGameOver, setIsGameOver, productIndex, setProductIndex }}
+    >
+      {isGameOver === true ? (
+        <GameOverPage productsSeen={products.slice(0, productIndex + 1 + 1)} />
+      ) : (
+        <GamePage products={products} />
+      )}
     </GameStateContext.Provider>
   );
 };
