@@ -32,3 +32,10 @@ export function getSsenseImageUrl(product: Product) {
   let suffix = "/" + brand_name_for_url + "-" + product_name_for_url + ".jpg";
   return base_image_url + from_ssense_cdn + suffix;
 }
+
+export function getSsenseProductUrl(url_stub: string) {
+  // url_stub is is in the form of: /men/product/parajumpers/black-trident-sweatshirt/12747441
+  const base_product_url = "https://www.ssense.com/en-ca";
+
+  return base_product_url + url_stub;
+}

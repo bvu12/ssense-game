@@ -1,14 +1,16 @@
+import { getSsenseImageUrl, getSsenseProductUrl } from "@/helpers";
 import { useEffect, useRef, useState } from "react";
 
 import Card from "../Card/Card";
+import { Product } from "@/interfaces";
 
 type CarouselProps = {
-  slide_urls: string[];
+  productsSeen: Product[];
 };
 
 // From: https://robkendal.co.uk/blog/how-to-build-a-multi-image-carousel-in-react-and-tailwind
 
-const Carousel = ({ slide_urls }: CarouselProps) => {
+const Carousel = ({ productsSeen }: CarouselProps) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef<any>(null);
@@ -82,23 +84,23 @@ const Carousel = ({ slide_urls }: CarouselProps) => {
         ref={carousel}
         className="carousel-container relative z-0 flex touch-pan-x snap-x snap-mandatory gap-5 overflow-hidden scroll-smooth"
       >
-        {slide_urls.map((slide_url, index) => {
+        {productsSeen.map((product, index) => {
           return (
             <div
               key={index}
               className="carousel-item h-[40rem] touch-pan-x snap-x snap-mandatory scroll-smooth transition delay-150 duration-300 ease-in-out hover:scale-110"
             >
               <a
-                href={slide_url}
+                href={getSsenseProductUrl(product.url)}
                 className="z-0 block h-[36rem] w-[18rem]"
                 target="_blank"
                 rel="noreferrer noopener"
               >
                 <Card
-                  image_url={slide_url}
-                  brand_name={"brand_name"}
-                  product_title={"product_title"}
-                  price={99}
+                  image_url={getSsenseImageUrl(product)}
+                  brand_name={product.brand.name.en}
+                  product_title={product.name.en}
+                  price={product.priceByCountry[0].regular}
                 />
               </a>
             </div>
