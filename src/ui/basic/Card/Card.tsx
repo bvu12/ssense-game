@@ -21,7 +21,7 @@ const Card = ({
     <div className="h-full w-full rounded object-fill shadow-xl">
       <div
         style={{ backgroundImage: `url(${image_url})` }}
-        className="h-1/2 w-full rounded-md bg-cover bg-center bg-no-repeat md:h-3/4"
+        className="h-1/2 w-full rounded-md bg-contain bg-center bg-no-repeat md:h-3/4"
       >
         {is_clickable && clickable_element}
       </div>
