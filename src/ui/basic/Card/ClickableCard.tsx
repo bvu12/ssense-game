@@ -17,14 +17,14 @@ const ClickableButtonGroup = ({
     <div className="h-full p-12">
       <button
         onClick={on_click_higher}
-        className="h-2/5 w-full transition delay-150 duration-300 ease-in-out hover:-translate-y-4 hover:scale-110 hover:bg-white hover:bg-opacity-25"
+        className="h-2/5 w-full bg-slate-200 bg-opacity-25 text-3xl font-black  text-stone-400 transition delay-150 duration-300 ease-in-out hover:-translate-y-4 hover:scale-110 hover:bg-gray-400 hover:bg-opacity-30"
       >
         Higher
       </button>
       <div className="h-1/5"></div>
       <button
         onClick={on_click_lower}
-        className="h-2/5 w-full transition delay-150 duration-300 ease-in-out hover:translate-y-4 hover:scale-110 hover:bg-white hover:bg-opacity-25"
+        className="h-2/5 w-full bg-slate-200 bg-opacity-25 text-3xl font-black text-stone-400 transition delay-150 duration-300 ease-in-out hover:translate-y-4 hover:scale-110 hover:bg-gray-600 hover:bg-opacity-30"
       >
         Lower
       </button>

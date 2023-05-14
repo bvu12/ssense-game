@@ -63,7 +63,7 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
   }, []);
 
   return (
-    <div className="carousel relative m-4 max-w-screen-sm overflow-hidden md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+    <div className="carousel relative m-4 max-w-xs overflow-hidden sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
       <div className="carousel-button top left absolute flex h-full w-full justify-between">
         <button
           onClick={movePrev}
