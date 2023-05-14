@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("http://localhost:3001/api/products");
+      const res = await fetch("http://localhost:3000/api/products");
       const data = await res.json();
       setProducts(shuffle(data));
       setIsLoading(false);

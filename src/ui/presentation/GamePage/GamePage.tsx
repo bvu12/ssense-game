@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 
 import GamePageCardGroup from "./GamePageCardGroup";
-import GamePageTransitionCheck from "./GamePageTransitionCheck";
+import GamePageTransitionCheckmark from "./GamePageTransitionCheckmark";
 import { GameStateContext } from "../SsenseHigherLowerGame/SsenseHigherLowerGame";
 import { Product } from "@/interfaces";
 import { useTimeoutFn } from "react-use";
@@ -57,8 +57,9 @@ const GamePage = ({ products }: GamePageProps) => {
         unknownProduct={unknownProduct}
         onGuessHigher={onGuessHigher}
         onGuessLower={onGuessLower}
+        isShowingTransition={isShowingTransition}
       />
-      <GamePageTransitionCheck isShowingTransition={isShowingTransition} />
+      <GamePageTransitionCheckmark isShowingTransition={isShowingTransition} />
     </div>
   );
 };
