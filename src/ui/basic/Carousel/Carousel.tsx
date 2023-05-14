@@ -63,7 +63,7 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
   }, []);
 
   return (
-    <div className="carousel relative m-4 max-w-2xl overflow-hidden">
+    <div className="carousel relative m-4 max-w-screen-sm overflow-hidden md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
       <div className="carousel-button top left absolute flex h-full w-full justify-between">
         <button
           onClick={movePrev}
@@ -88,11 +88,11 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
           return (
             <div
               key={index}
-              className="carousel-item h-[40rem] touch-pan-x snap-x snap-mandatory scroll-smooth transition delay-150 duration-300 ease-in-out hover:scale-110"
+              className="carousel-item h-[600px] touch-pan-x snap-x snap-mandatory scroll-smooth transition delay-150 duration-300 ease-in-out hover:scale-110"
             >
               <a
                 href={getSsenseProductUrl(product.url)}
-                className="z-0 block h-[36rem] w-[18rem]"
+                className="z-0 block h-[400px] w-[175px] md:h-[500px] md:w-[200px] lg:w-[250px] xl:w-[300px]"
                 target="_blank"
                 rel="noreferrer noopener"
               >

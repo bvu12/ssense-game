@@ -57,7 +57,6 @@ const GamePage = ({ products }: GamePageProps) => {
         unknownProduct={unknownProduct}
         onGuessHigher={onGuessHigher}
         onGuessLower={onGuessLower}
-        isShowingTransition={isShowingTransition}
       />
       <GamePageTransitionCheckmark isShowingTransition={isShowingTransition} />
     </div>

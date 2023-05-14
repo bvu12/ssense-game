@@ -25,9 +25,9 @@ const Card = ({
       >
         {is_clickable && clickable_element}
       </div>
-      <div className="flex h-1/2 flex-col break-all px-6 py-4 md:h-1/4">
+      <div className="flex h-1/2 flex-col break-words px-6 py-4 md:h-1/4">
         <div className="mb-2 text-lg font-bold md:text-xl">{brand_name}</div>
-        <p className="flex-grow text-xs text-gray-700 md:text-base">
+        <p className="text-md flex-grow text-gray-700 md:text-base">
           {product_title}
         </p>
         {price && <p>${price}</p>}
