@@ -82,17 +82,27 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
       </div>
       <div
         ref={carousel}
-        className="carousel-container relative z-0 flex touch-pan-x snap-x snap-mandatory gap-5 overflow-hidden scroll-smooth"
+        className="carousel-container relative z-0 flex touch-pan-x snap-x snap-mandatory gap-5 overflow-y-hidden overflow-x-scroll scroll-smooth"
+        // https://stackoverflow.com/questions/68658249/how-to-do-react-horizontal-scroll-using-mouse-wheel
+        onWheel={(e) => {
+          if (e.deltaY === 0) return;
+          e.preventDefault();
+          const el = e.currentTarget;
+          el.scrollTo({
+            left: e.deltaY < 0 ? el.scrollLeft - 250 : el.scrollLeft + 250,
+            behavior: "auto",
+          });
+        }}
       >
         {productsSeen.map((product, index) => {
           return (
             <div
               key={index}
-              className="carousel-item h-[600px] touch-pan-x snap-x snap-mandatory scroll-smooth transition delay-150 duration-300 ease-in-out hover:scale-110"
+              className="carousel-item h-[750px] touch-pan-x snap-x snap-mandatory scroll-smooth transition delay-150 duration-300 ease-in-out hover:scale-110"
             >
               <a
                 href={getSsenseProductUrl(product.url)}
-                className="z-0 block h-[400px] w-[175px] md:h-[500px] md:w-[200px] lg:w-[250px] xl:w-[300px]"
+                className="z-0 block h-[400px] w-[175px] md:h-[550px] md:w-[250px] lg:h-[700px] lg:w-[300px] xl:w-[300px]"
                 target="_blank"
                 rel="noreferrer noopener"
               >
