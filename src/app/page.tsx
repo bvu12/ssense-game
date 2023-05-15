@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Product } from "@/interfaces";
 import SsenseHigherLowerGame from "@/ui/presentation/SsenseHigherLowerGame/SsenseHigherLowerGame";
 import { shuffle } from "@/helpers";
+import { Spinner } from "@/ui/basic/Spinner/Spinner";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -22,11 +23,7 @@ export default function Home() {
 
   return (
     <>
-      {isLoading ? (
-        <h1>loading!</h1>
-      ) : (
-        <SsenseHigherLowerGame products={products} />
-      )}
+      {isLoading ? <Spinner /> : <SsenseHigherLowerGame products={products} />}
     </>
   );
 }
