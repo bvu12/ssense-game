@@ -1,5 +1,3 @@
-import { Product } from "@/interfaces";
-
 /**
  * Shuffles array in place.
  * @param {Array} a items An array containing the items.
@@ -15,27 +13,24 @@ export function shuffle<T>(arr: Array<T>) {
   return arr;
 }
 
-export function getSsenseImageUrl(product: Product) {
+export function getSsenseImageUrl(imageUrl: string) {
   const base_image_url =
-    "https://img.ssensemedia.com/images/b_white,g_center,f_auto,q_auto:best/";
+    "https://img.ssensemedia.com/images/b_white,g_center,f_auto,q_auto:best";
 
-  // cdn is in the form of: "https://res.cloudinary.com/ssenseweb/image/upload/__IMAGE_PARAMS__/231837M237028_1.jpg"
-  let from_ssense_cdn = product.image[0].split("/").pop(); // "231837M237028_1.jpg"
-  from_ssense_cdn = from_ssense_cdn?.split(".")[0]; // "231837M237028_1"
-
-  // product_url is in the form of: "/men/product/salomon/red-xt-4-og-sneakers/11869861"
-  let product_url = product.url.split("/");
-  const brand_name_for_url = product_url[3]; // "salomon"
-  const product_name_for_url = product_url[4]; // "red-xt-4-og-sneakers"
-
-  // url required is in the form of: "https://img.ssensemedia.com/images/b_white,g_center,f_auto,q_auto:best/231559M166014_1/<literally anything goes here but it's typically brandname-productname>.jpg"
-  let suffix = "/" + brand_name_for_url + "-" + product_name_for_url + ".jpg";
-  return base_image_url + from_ssense_cdn + suffix;
+  // imageUrl is in the form of: /231924M176013_1/stutterheim-beige-stockholm-coat.jpg
+  return base_image_url + imageUrl;
 }
 
 export function getSsenseProductUrl(url_stub: string) {
   // url_stub is is in the form of: /men/product/parajumpers/black-trident-sweatshirt/12747441
-  const base_product_url = "https://www.ssense.com/en-ca";
+  const base_product_url = "https://www.ssense.com";
 
   return base_product_url + url_stub;
+}
+
+
+export function getNumericPrice(price: string) {
+  // price is in the form of $X
+  let priceWithNoSign = price.substring(1);
+  return Number(priceWithNoSign);
 }

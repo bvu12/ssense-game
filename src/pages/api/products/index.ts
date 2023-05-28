@@ -1,11 +1,19 @@
+import { MongoProduct } from "@/interfaces";
+import clientPromise from "@/lib/mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { Product } from "@/interfaces";
-import { ssense_products } from "@/backend/ssense_products";
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+   try {
+       const client = await clientPromise;
+       const db = client.db("ssense-game");
 
-export default function handler(
-  _req: NextApiRequest,
-  res: NextApiResponse<Product[]>
-) {
-  return res.status(200).json(ssense_products);
-}
+       const products = await db
+           .collection<MongoProduct>("mens")
+           .aggregate([{ $sample: { size: 12 } }])
+           .toArray();
+
+       res.json(products);
+   } catch (e) {
+       console.error(e);
+   }
+};

@@ -2,10 +2,10 @@ import { getSsenseImageUrl, getSsenseProductUrl } from "@/helpers";
 import { useEffect, useRef, useState } from "react";
 
 import Card from "../Card/Card";
-import { Product } from "@/interfaces";
+import { MongoProduct, Product } from "@/interfaces";
 
 type CarouselProps = {
-  productsSeen: Product[];
+  productsSeen: MongoProduct[];
 };
 
 // From: https://robkendal.co.uk/blog/how-to-build-a-multi-image-carousel-in-react-and-tailwind
@@ -101,16 +101,16 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
               className="carousel-item h-[750px] touch-pan-x snap-x snap-mandatory scroll-smooth transition delay-150 duration-300 ease-in-out hover:scale-110"
             >
               <a
-                href={getSsenseProductUrl(product.url)}
+                href={getSsenseProductUrl(product.productUrl)}
                 className="z-0 block h-[400px] w-[175px] md:h-[550px] md:w-[250px] lg:h-[700px] lg:w-[300px] xl:w-[300px]"
                 target="_blank"
                 rel="noreferrer noopener"
               >
                 <Card
-                  image_url={getSsenseImageUrl(product)}
-                  brand_name={product.brand.name.en}
-                  product_title={product.name.en}
-                  price={product.priceByCountry[0].regular}
+                  image_url={getSsenseImageUrl(product.imageUrl)}
+                  brand_name={product.brand}
+                  product_title={product.productName}
+                  price={product.price}
                 />
               </a>
             </div>

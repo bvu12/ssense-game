@@ -3,11 +3,12 @@ import { useContext, useState } from "react";
 import GamePageCardGroup from "./GamePageCardGroup";
 import GamePageTransitionCheckmark from "./GamePageTransitionCheckmark";
 import { GameStateContext } from "../SsenseHigherLowerGame/SsenseHigherLowerGame";
-import { Product } from "@/interfaces";
+import { MongoProduct } from "@/interfaces";
 import { useTimeoutFn } from "react-use";
+import { getNumericPrice } from "@/helpers";
 
 export type GamePageProps = {
-  products: Product[];
+  products: MongoProduct[];
 };
 
 const GamePage = ({ products }: GamePageProps) => {
@@ -28,8 +29,8 @@ const GamePage = ({ products }: GamePageProps) => {
   }) {
     if (
       comparator(
-        unknownProduct.priceByCountry[0].regular,
-        givenProduct.priceByCountry[0].regular
+        getNumericPrice(unknownProduct.price),
+        getNumericPrice(givenProduct.price)
       )
     ) {
       setIsShowingTransition((isShowingTransition) => !isShowingTransition);

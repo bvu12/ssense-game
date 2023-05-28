@@ -1,8 +1,8 @@
 import Carousel from "@/ui/basic/Carousel/Carousel";
-import { Product } from "@/interfaces";
+import { MongoProduct } from "@/interfaces";
 
 type GameOverPageProps = {
-  productsSeen: Product[];
+  productsSeen: MongoProduct[];
 };
 
 const GameOverPage = ({ productsSeen }: GameOverPageProps) => {

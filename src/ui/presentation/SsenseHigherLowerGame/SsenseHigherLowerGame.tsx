@@ -2,7 +2,7 @@ import React, { createContext } from "react";
 
 import GameOverPage from "../GameOverPage/GameOverPage";
 import GamePage from "../GamePage/GamePage";
-import { Product } from "@/interfaces";
+import { MongoProduct } from "@/interfaces";
 import { useState } from "react";
 
 const useGameValues = () => {
@@ -22,7 +22,7 @@ export const GameStateContext = createContext(
 );
 
 type SsenseHigherLowerGameProps = {
-  products: Product[];
+  products: MongoProduct[];
 };
 
 const SsenseHigherLowerGame = ({ products }: SsenseHigherLowerGameProps) => {

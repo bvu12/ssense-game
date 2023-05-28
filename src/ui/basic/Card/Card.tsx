@@ -4,7 +4,7 @@ export type CardProps = {
   image_url: string;
   brand_name: string;
   product_title: string;
-  price?: number;
+  price?: string;
   is_clickable?: boolean;
   clickable_element?: ReactNode;
 };
@@ -32,7 +32,7 @@ const Card = ({
         <p className="text-md flex-grow text-gray-700 md:text-base lg:text-xl">
           {product_title}
         </p>
-        {price && <p>${price}</p>}
+        {price && <p>{price}</p>}
       </div>
     </div>
   );
