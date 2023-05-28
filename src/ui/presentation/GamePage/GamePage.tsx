@@ -1,19 +1,26 @@
-import { useContext, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 
 import GamePageCardGroup from "./GamePageCardGroup";
 import GamePageTransitionCheckmark from "./GamePageTransitionCheckmark";
-import { GameStateContext } from "../SsenseHigherLowerGame/SsenseHigherLowerGame";
 import { MongoProduct } from "@/interfaces";
 import { useTimeoutFn } from "react-use";
 import { getNumericPrice } from "@/helpers";
 
 export type GamePageProps = {
   products: MongoProduct[];
+  isGameOver: boolean;
+  setIsGameOver: Dispatch<SetStateAction<boolean>>;
+  productIndex: number;
+  setProductIndex: Dispatch<SetStateAction<number>>;
 };
 
-const GamePage = ({ products }: GamePageProps) => {
-  const { isGameOver, setIsGameOver, productIndex, setProductIndex } =
-    useContext(GameStateContext);
+const GamePage = ({
+  products,
+  isGameOver,
+  setIsGameOver,
+  productIndex,
+  setProductIndex,
+}: GamePageProps) => {
   const givenProduct = products[productIndex];
   const unknownProduct = products[productIndex + 1];
 
