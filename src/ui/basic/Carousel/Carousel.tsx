@@ -104,7 +104,7 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
             >
               <a
                 href={getSsenseProductUrl(product.productUrl)}
-                className="z-0 block h-[70vh] w-[175px]"
+                className="z-0 block h-[70vh] w-[175px] lg:w-[250px]"
                 target="_blank"
                 rel="noreferrer noopener"
               >

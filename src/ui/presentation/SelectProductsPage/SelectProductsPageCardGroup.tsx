@@ -20,23 +20,28 @@ const SelectProductsPageCardGroup = ({
 }: SelectProductsPageCardGroupProps) => {
   const { isGameOver } = useContext(GameStateContext);
   return (
-    <div className="flex h-screen gap-5 p-5 md:gap-10 md:p-10 xl:gap-10 2xl:px-80 2xl:py-24">
-      <Card
-        image_url={getSsenseImageUrl(givenProduct.imageUrl)}
-        brand_name={givenProduct.brand}
-        product_title={givenProduct.productName}
-        price={givenProduct.price}
-        isGameOver={isGameOver}
-      />
-      <ClickableCard
-        image_url={getSsenseImageUrl(unknownProduct.imageUrl)}
-        brand_name={unknownProduct.brand}
-        product_title={unknownProduct.productName}
-        is_clickable={true}
-        on_click_higher={() => onGuessHigher()}
-        on_click_lower={() => onGuessLower()}
-        isGameOver={isGameOver}
-      />
+    <div className="flex flex-col items-center justify-center h-screen">
+      <div className="mt-6 mb-8 text-xl md:text-2xl font-black tracking-widest">
+        HIGHER OR LOWER
+      </div>
+      <div className="grid grid-cols-2 h-[90vh] md:h-[70vh] gap-5 w-[80vw] md:gap-10 md:w-[70vw] xl:w-[60vw]">
+        <Card
+          image_url={getSsenseImageUrl(givenProduct.imageUrl)}
+          brand_name={givenProduct.brand}
+          product_title={givenProduct.productName}
+          price={givenProduct.price}
+          isGameOver={isGameOver}
+        />
+        <ClickableCard
+          image_url={getSsenseImageUrl(unknownProduct.imageUrl)}
+          brand_name={unknownProduct.brand}
+          product_title={unknownProduct.productName}
+          is_clickable={true}
+          on_click_higher={() => onGuessHigher()}
+          on_click_lower={() => onGuessLower()}
+          isGameOver={isGameOver}
+        />
+      </div>
     </div>
   );
 };
