@@ -8,14 +8,15 @@ type GameOverPageProps = {
 
 const GameOverPage = ({ productsSeen, resetGame }: GameOverPageProps) => {
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="m-auto">
-        <div className="text-center text-4xl font-black tracking-widest">
-          GAMEOVER
-        </div>
-        <button onClick={() => resetGame()}>RESET GAME</button>
-        <Carousel productsSeen={productsSeen} />
-      </div>
+    <div className="flex flex-col items-center">
+      <div className="my-4 text-4xl font-black tracking-widest">GAMEOVER</div>
+      <button
+        className="mb-4 text-2xl font-light tracking-widest"
+        onClick={() => resetGame()}
+      >
+        RESET GAME
+      </button>
+      <Carousel productsSeen={productsSeen} />
     </div>
   );
 };
