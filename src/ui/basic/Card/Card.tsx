@@ -18,20 +18,16 @@ const Card = ({
   clickable_element,
 }: CardProps) => {
   return (
-    <div className="h-full w-full rounded object-fill shadow-xl">
+    <div className="h-[95%] w-full rounded object-fill shadow-xl">
       <div
         style={{ backgroundImage: `url(${image_url})` }}
-        className="h-1/2 w-full rounded-md bg-contain bg-center bg-no-repeat md:h-3/4"
+        className="h-1/2 w-full rounded-md bg-contain bg-center bg-no-repeat md:h-2/3"
       >
         {is_clickable && clickable_element}
       </div>
-      <div className="flex h-1/2 flex-col break-words px-6 py-4 md:h-1/4">
-        <div className="mb-2 text-lg font-bold md:text-xl lg:text-2xl">
-          {brand_name}
-        </div>
-        <p className="text-md flex-grow text-gray-700 md:text-base lg:text-xl">
-          {product_title}
-        </p>
+      <div className="flex h-1/2 flex-col break-words px-4 py-3 md:h-1/3">
+        <div className="mb-2 text-md font-bold">{brand_name}</div>
+        <p className="text-sm flex-grow text-gray-700">{product_title}</p>
         {price && <p>{price}</p>}
       </div>
     </div>

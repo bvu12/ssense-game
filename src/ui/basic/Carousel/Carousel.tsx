@@ -97,11 +97,11 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
           return (
             <div
               key={index}
-              className="carousel-item h-[750px] touch-pan-x snap-x snap-mandatory scroll-smooth transition delay-150 duration-300 ease-in-out hover:scale-110"
+              className="carousel-item h-[100%] touch-pan-x snap-x snap-mandatory scroll-smooth transition delay-150 duration-300 ease-in-out hover:scale-110"
             >
               <a
                 href={getSsenseProductUrl(product.productUrl)}
-                className="z-0 block h-[400px] w-[175px] md:h-[550px] md:w-[250px] lg:h-[700px] lg:w-[300px] xl:w-[300px]"
+                className="z-0 block h-[70vh] w-[175px]"
                 target="_blank"
                 rel="noreferrer noopener"
               >
