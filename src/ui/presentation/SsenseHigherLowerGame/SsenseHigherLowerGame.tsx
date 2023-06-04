@@ -4,7 +4,11 @@ import { GameStateContext } from "@/context/useGameStateContext";
 import { useContext } from "react";
 
 type SsenseHigherLowerGameProps = {
-  resetGame: () => void;
+  resetGame: {
+    resetGameMixed: () => void;
+    resetGameWomens: () => void;
+    resetGameMens: () => void;
+  };
 };
 
 const SsenseHigherLowerGame = ({ resetGame }: SsenseHigherLowerGameProps) => {

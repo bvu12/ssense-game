@@ -1,6 +1,7 @@
 "use client";
 
 import { GameStateContext, useGameState } from "@/context/useGameStateContext";
+import { ProductType, getRandomProductAPISuffix } from "@/helpers";
 import { Spinner } from "@/ui/basic/Spinner/Spinner";
 import SsenseHigherLowerGame from "@/ui/presentation/SsenseHigherLowerGame/SsenseHigherLowerGame";
 import { useEffect } from "react";
@@ -17,8 +18,10 @@ export default function Home() {
     setProductIndex,
   } = useGameState();
 
-  const startGame = async () => {
-    const res = await fetch("http://localhost:3000/api/products/");
+  const startGame = async (productAPISuffix: string) => {
+    const res = await fetch(
+      "http://localhost:3000/api/products/" + productAPISuffix
+    );
     const data = await res.json();
     setProductIndex(0);
     setProducts(data);
@@ -27,11 +30,25 @@ export default function Home() {
   };
 
   useEffect(() => {
-    startGame();
+    startGame(getRandomProductAPISuffix());
   }, []);
 
-  const resetGame = () => {
-    startGame();
+  const resetGameMixed = () => {
+    startGame(ProductType.MIXED);
+  };
+
+  const resetGameWomens = () => {
+    startGame(ProductType.WOMENS);
+  };
+
+  const resetGameMens = () => {
+    startGame(ProductType.MENS);
+  };
+
+  const resetGame = {
+    resetGameMixed,
+    resetGameWomens,
+    resetGameMens,
   };
 
   return (
