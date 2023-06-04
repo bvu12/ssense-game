@@ -1,8 +1,7 @@
-import { getSsenseImageUrl, getSsenseProductUrl } from "@/helpers";
-import { useEffect, useRef, useState } from "react";
-
 import Card from "../Card/Card";
-import { MongoProduct, Product } from "@/interfaces";
+import { getSsenseImageUrl, getSsenseProductUrl } from "@/helpers";
+import { MongoProduct } from "@/interfaces";
+import { useEffect, useRef, useState } from "react";
 
 type CarouselProps = {
   productsSeen: MongoProduct[];

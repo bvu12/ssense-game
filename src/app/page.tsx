@@ -1,13 +1,9 @@
 "use client";
 
-import { createContext, useEffect } from "react";
-
-import SsenseHigherLowerGame from "@/ui/presentation/SsenseHigherLowerGame/SsenseHigherLowerGame";
+import { GameStateContext, useGameState } from "@/context/useGameStateContext";
 import { Spinner } from "@/ui/basic/Spinner/Spinner";
-import {
-  GameStateContext,
-  useGameStateContext,
-} from "@/context/useGameStateContext";
+import SsenseHigherLowerGame from "@/ui/presentation/SsenseHigherLowerGame/SsenseHigherLowerGame";
+import { useEffect } from "react";
 
 export default function Home() {
   const {
@@ -19,7 +15,7 @@ export default function Home() {
     setProducts,
     productIndex,
     setProductIndex,
-  } = useGameStateContext();
+  } = useGameState();
 
   const startGame = async () => {
     const res = await fetch("http://localhost:3000/api/products/");

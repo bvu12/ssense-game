@@ -2,8 +2,6 @@
 
 import Card, { CardProps } from "./Card";
 
-import React from "react";
-
 type ClickableButtonGroupProps = {
   on_click_higher: () => void;
   on_click_lower: () => void;

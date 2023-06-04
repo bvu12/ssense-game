@@ -1,11 +1,7 @@
-import React, { useContext } from "react";
-
 import GameOverPage from "../GameOverPage/GameOverPage";
-import GamePage from "../GamePage/GamePage";
-import {
-  GameStateContext,
-  useGameStateContext,
-} from "@/context/useGameStateContext";
+import SelectProductsPage from "../SelectProductsPage/SelectProductsPage";
+import { GameStateContext } from "@/context/useGameStateContext";
+import { useContext } from "react";
 
 type SsenseHigherLowerGameProps = {
   resetGame: () => void;
@@ -22,7 +18,7 @@ const SsenseHigherLowerGame = ({ resetGame }: SsenseHigherLowerGameProps) => {
           resetGame={resetGame}
         />
       ) : (
-        <GamePage />
+        <SelectProductsPage />
       )}
     </>
   );

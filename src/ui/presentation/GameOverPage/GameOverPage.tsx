@@ -1,5 +1,5 @@
-import Carousel from "@/ui/basic/Carousel/Carousel";
 import { MongoProduct } from "@/interfaces";
+import Carousel from "@/ui/basic/Carousel/Carousel";
 
 type GameOverPageProps = {
   productsSeen: MongoProduct[];

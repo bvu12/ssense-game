@@ -1,12 +1,10 @@
-import { useContext, useState } from "react";
-
-import GamePageCardGroup from "./GamePageCardGroup";
-import GamePageTransitionCheckmark from "./GamePageTransitionCheckmark";
-import { useTimeoutFn } from "react-use";
-import { getNumericPrice } from "@/helpers";
+import SelectProductsPageCardGroup from "./SelectProductsPageCardGroup";
+import SelectProductsPageTransitionCheckmark from "./SelectProductsPageTransitionCheckmark";
 import { GameStateContext } from "@/context/useGameStateContext";
+import { useContext, useState } from "react";
+import { useTimeoutFn } from "react-use";
 
-const GamePage = ({}) => {
+const SelectProductsPage = ({}) => {
   const { setIsGameOver, products, productIndex, setProductIndex } =
     useContext(GameStateContext);
 
@@ -49,15 +47,23 @@ const GamePage = ({}) => {
 
   return (
     <div className="relative">
-      <GamePageCardGroup
+      <SelectProductsPageCardGroup
         givenProduct={givenProduct}
         unknownProduct={unknownProduct}
         onGuessHigher={onGuessHigher}
         onGuessLower={onGuessLower}
       />
-      <GamePageTransitionCheckmark isShowingTransition={isShowingTransition} />
+      <SelectProductsPageTransitionCheckmark
+        isShowingTransition={isShowingTransition}
+      />
     </div>
   );
 };
 
-export default GamePage;
+export default SelectProductsPage;
+
+function getNumericPrice(price: string) {
+  // price is in the form of $X
+  let priceWithNoSign = price.substring(1);
+  return Number(priceWithNoSign);
+}

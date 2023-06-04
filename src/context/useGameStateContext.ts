@@ -1,7 +1,8 @@
-import { MongoProduct } from "@/interfaces";
 import { createContext, useState } from "react";
 
-export const useGameStateContext = () => {
+import { MongoProduct } from "@/interfaces";
+
+export const useGameState = () => {
     // Game state
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isGameOver, setIsGameOver] = useState<boolean>(false);
@@ -23,6 +24,6 @@ export const useGameStateContext = () => {
   };
   
   export const GameStateContext = createContext(
-    {} as ReturnType<typeof useGameStateContext>
+    {} as ReturnType<typeof useGameState>
   );
   

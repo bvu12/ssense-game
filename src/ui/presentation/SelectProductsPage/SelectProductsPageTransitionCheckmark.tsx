@@ -1,12 +1,12 @@
 import { Transition } from "@headlessui/react";
 
-export type GamePageTransitionCheckmarkProps = {
+export type SelectProductsPageTransitionCheckmarkProps = {
   isShowingTransition: boolean;
 };
 
-const GamePageTransitionCheckmark = ({
+const SelectProductsPageTransitionCheckmark = ({
   isShowingTransition,
-}: GamePageTransitionCheckmarkProps) => {
+}: SelectProductsPageTransitionCheckmarkProps) => {
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
       <div className="h-32 w-32">
@@ -42,4 +42,4 @@ const GamePageTransitionCheckmark = ({
   );
 };
 
-export default GamePageTransitionCheckmark;
+export default SelectProductsPageTransitionCheckmark;
