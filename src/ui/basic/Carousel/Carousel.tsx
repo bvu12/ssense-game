@@ -1,7 +1,8 @@
 import Card from "../Card/Card";
+import { GameStateContext } from "@/context/useGameStateContext";
 import { getSsenseImageUrl, getSsenseProductUrl } from "@/helpers";
 import { MongoProduct } from "@/interfaces";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 type CarouselProps = {
   productsSeen: MongoProduct[];
@@ -13,6 +14,8 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef<any>(null);
+
+  const { isGameOver } = useContext(GameStateContext);
 
   const movePrev = () => {
     if (currentIndex > 0) {
@@ -110,6 +113,7 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
                   brand_name={product.brand}
                   product_title={product.productName}
                   price={product.price}
+                  isGameOver={isGameOver}
                 />
               </a>
             </div>

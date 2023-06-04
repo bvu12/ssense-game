@@ -38,6 +38,7 @@ const ClickableCard = ({
   product_title,
   on_click_higher,
   on_click_lower,
+  isGameOver,
 }: ClickableCardProps) => {
   const clickable_button_group = (
     <ClickableButtonGroup
@@ -53,6 +54,7 @@ const ClickableCard = ({
       product_title={product_title}
       is_clickable={true}
       clickable_element={clickable_button_group}
+      isGameOver={isGameOver}
     />
   );
 };
