@@ -78,7 +78,7 @@ function writeToFile(newProducts) {
   });
 }
 
-const base_url = "https://www.ssense.com/en-ca/men?page=";
+const base_url = "https://www.ssense.com/en-ca/women?page=";
 
 let config = {
   method: "get",
@@ -114,7 +114,7 @@ const delay = () => {
 };
 
 const scrape = async () => {
-  for (let i = 252; i < 257; i++) {
+  for (let i = 470; i < 476; i++) {
     const ssense_url = base_url + i;
     config.url = ssense_url;
 
