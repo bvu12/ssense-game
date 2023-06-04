@@ -1,0 +1,28 @@
+import { MongoProduct } from "@/interfaces";
+import { createContext, useState } from "react";
+
+export const useGameStateContext = () => {
+    // Game state
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isGameOver, setIsGameOver] = useState<boolean>(false);
+  
+    // Products
+    const [products, setProducts] = useState<MongoProduct[]>([]);
+    const [productIndex, setProductIndex] = useState<number>(0);
+  
+    return {
+      isLoading,
+      setIsLoading,
+      isGameOver,
+      setIsGameOver,
+      products,
+      setProducts,
+      productIndex,
+      setProductIndex,
+    };
+  };
+  
+  export const GameStateContext = createContext(
+    {} as ReturnType<typeof useGameStateContext>
+  );
+  

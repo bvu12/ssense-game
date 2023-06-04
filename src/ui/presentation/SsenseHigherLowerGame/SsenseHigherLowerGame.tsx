@@ -1,24 +1,18 @@
-import React, { Dispatch, SetStateAction, createContext } from "react";
+import React, { useContext } from "react";
 
 import GameOverPage from "../GameOverPage/GameOverPage";
 import GamePage from "../GamePage/GamePage";
-import { MongoProduct } from "@/interfaces";
-import { useState } from "react";
+import {
+  GameStateContext,
+  useGameStateContext,
+} from "@/context/useGameStateContext";
 
 type SsenseHigherLowerGameProps = {
-  products: MongoProduct[];
-  isGameOver: boolean;
-  setIsGameOver: Dispatch<SetStateAction<boolean>>;
   resetGame: () => void;
 };
 
-const SsenseHigherLowerGame = ({
-  products,
-  isGameOver,
-  setIsGameOver,
-  resetGame,
-}: SsenseHigherLowerGameProps) => {
-  const [productIndex, setProductIndex] = useState<number>(0);
+const SsenseHigherLowerGame = ({ resetGame }: SsenseHigherLowerGameProps) => {
+  const { isGameOver, products, productIndex } = useContext(GameStateContext);
 
   return (
     <>
@@ -28,13 +22,7 @@ const SsenseHigherLowerGame = ({
           resetGame={resetGame}
         />
       ) : (
-        <GamePage
-          products={products}
-          isGameOver={isGameOver}
-          setIsGameOver={setIsGameOver}
-          productIndex={productIndex}
-          setProductIndex={setProductIndex}
-        />
+        <GamePage />
       )}
     </>
   );

@@ -1,22 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { createContext, useEffect } from "react";
 
-import { MongoProduct } from "@/interfaces";
 import SsenseHigherLowerGame from "@/ui/presentation/SsenseHigherLowerGame/SsenseHigherLowerGame";
 import { Spinner } from "@/ui/basic/Spinner/Spinner";
+import {
+  GameStateContext,
+  useGameStateContext,
+} from "@/context/useGameStateContext";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [products, setProducts] = useState<MongoProduct[]>([]);
-  const [isGameOver, setIsGameOver] = useState<boolean>(false);
+  const {
+    isLoading,
+    setIsLoading,
+    isGameOver,
+    setIsGameOver,
+    products,
+    setProducts,
+    productIndex,
+    setProductIndex,
+  } = useGameStateContext();
 
   const startGame = async () => {
     const res = await fetch("http://localhost:3000/api/products/");
     const data = await res.json();
-    // setProducts(shuffle(data)); // Data is pre-shuffled
+    setProductIndex(0);
     setProducts(data);
     setIsLoading(false);
+    setIsGameOver(false);
   };
 
   useEffect(() => {
@@ -25,21 +36,26 @@ export default function Home() {
 
   const resetGame = () => {
     startGame();
-    setIsGameOver(false);
   };
 
   return (
-    <>
+    <GameStateContext.Provider
+      value={{
+        isLoading,
+        setIsLoading,
+        isGameOver,
+        setIsGameOver,
+        products,
+        setProducts,
+        productIndex,
+        setProductIndex,
+      }}
+    >
       {isLoading ? (
         <Spinner />
       ) : (
-        <SsenseHigherLowerGame
-          products={products}
-          isGameOver={isGameOver}
-          setIsGameOver={setIsGameOver}
-          resetGame={resetGame}
-        />
+        <SsenseHigherLowerGame resetGame={resetGame} />
       )}
-    </>
+    </GameStateContext.Provider>
   );
 }
