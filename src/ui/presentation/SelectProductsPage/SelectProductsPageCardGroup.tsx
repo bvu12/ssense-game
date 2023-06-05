@@ -20,11 +20,11 @@ const SelectProductsPageCardGroup = ({
 }: SelectProductsPageCardGroupProps) => {
   const { isGameOver } = useContext(GameStateContext);
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="mt-6 mb-8 text-xl md:text-2xl font-black tracking-widest">
+    <div className="flex h-screen flex-col items-center justify-center">
+      <div className="mb-8 mt-6 text-xl font-black tracking-widest md:text-2xl">
         HIGHER OR LOWER
       </div>
-      <div className="grid grid-cols-2 h-[90vh] md:h-[70vh] gap-5 w-[80vw] md:gap-10 md:w-[70vw] xl:w-[60vw]">
+      <div className=" grid  h-[90vh] w-[80vw] grid-cols-2 gap-5 md:h-[70vh] md:w-[70vw] md:gap-10 xl:w-[60vw]">
         <Card
           image_url={getSsenseImageUrl(givenProduct.imageUrl)}
           brand_name={givenProduct.brand}

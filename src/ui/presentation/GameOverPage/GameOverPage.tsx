@@ -12,28 +12,28 @@ type GameOverPageProps = {
 
 const GameOverPage = ({ productsSeen, resetGame }: GameOverPageProps) => {
   return (
-    <div className="flex flex-col items-center h-screen justify-center">
-      <div className="mt-4 mb-2 md:mt-8 md:mb-4 text-2xl md:text-4xl font-black tracking-widest">
+    <div className="flex h-screen flex-col items-center justify-center">
+      <div className="mb-2 mt-2 text-xl font-black tracking-widest md:my-4 md:text-2xl">
         GAMEOVER
       </div>
       <div className="flex gap-5">
-        <div className="mb-2 md:mb-4 text-md md:text-2xl font-light tracking-tight">
+        <div className="text-md mb-2 font-light tracking-tight md:mb-4 md:text-xl">
           RESET GAME
         </div>
         <button
-          className="mb-2 underline hover:decoration-4 md:mb-4 text-md md:text-2xl font-light tracking-widest"
+          className="text-md mb-2 font-light tracking-widest underline hover:decoration-4 md:mb-4 md:text-xl"
           onClick={() => resetGame.resetGameMixed()}
         >
           MIXED
         </button>
         <button
-          className="mb-2 underline hover:decoration-4 md:mb-4 text-md md:text-2xl font-light tracking-widest"
+          className="text-md mb-2 font-light tracking-widest underline hover:decoration-4 md:mb-4 md:text-xl"
           onClick={() => resetGame.resetGameMens()}
         >
           MENS
         </button>
         <button
-          className="mb-2 underline hover:decoration-4 md:mb-4 text-md md:text-2xl font-light tracking-widest"
+          className="text-md mb-2 font-light tracking-widest underline hover:decoration-4 md:mb-4 md:text-xl"
           onClick={() => resetGame.resetGameWomens()}
         >
           WOMENS

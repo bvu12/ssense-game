@@ -41,8 +41,8 @@ const Card = ({
         <div
           className={
             isGameOver
-              ? "mb-2 text-md font-bold"
-              : "mb-2 text-md font-bold md:text-lg xl:text-xl"
+              ? "text-md mb-2 font-bold"
+              : "text-md mb-2 font-bold md:text-lg xl:text-xl"
           }
         >
           {brand_name}
@@ -50,8 +50,8 @@ const Card = ({
         <p
           className={
             isGameOver
-              ? "text-sm flex-grow text-gray-700"
-              : "text-md flex-grow text-gray-700 md:text-base xl:text-md"
+              ? "flex-grow text-sm text-gray-700"
+              : "text-md xl:text-md flex-grow text-gray-700 md:text-base"
           }
         >
           {product_title}
