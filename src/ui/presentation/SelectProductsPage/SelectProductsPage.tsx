@@ -1,6 +1,7 @@
 import SelectProductsPageCardGroup from "./SelectProductsPageCardGroup";
 import SelectProductsPageTransitionCheckmark from "./SelectProductsPageTransitionCheckmark";
 import { GameStateContext } from "@/context/useGameStateContext";
+import { MongoProduct } from "@/interfaces";
 import { useContext, useState } from "react";
 import { useTimeoutFn } from "react-use";
 
@@ -22,16 +23,17 @@ const SelectProductsPage = ({}) => {
     (arg0: number, arg1: number): any;
   }) {
     if (
-      comparator(
+      !comparator(
         getNumericPrice(unknownProduct.price),
         getNumericPrice(givenProduct.price)
-      )
+      ) ||
+      isNoMoreProducts(products, productIndex)
     ) {
+      setIsGameOver(true);
+    } else {
       setIsShowingTransition((isShowingTransition) => !isShowingTransition);
       resetIsShowingTransition();
       setProductIndex((previousProductIndex) => previousProductIndex + 1);
-    } else {
-      setIsGameOver(true);
     }
   }
 
@@ -66,4 +68,12 @@ function getNumericPrice(price: string) {
   // price is in the form of $X
   let priceWithNoSign = price.substring(1);
   return Number(priceWithNoSign);
+}
+function isNoMoreProducts(
+  products: MongoProduct[],
+  productIndex: number
+): boolean {
+  const rightProductIndex = productIndex + 1;
+  const totalNumberOfProductsZeroIndexed = products.length - 1;
+  return rightProductIndex >= totalNumberOfProductsZeroIndexed;
 }
