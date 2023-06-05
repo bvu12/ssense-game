@@ -1,11 +1,13 @@
-{"tailwindCSS.includeLanguages": {
+{
+  "tailwindCSS.includeLanguages": {
     "html": "html",
     "javascript": "javascript",
     "css": "css"
-},
-"editor.quickSuggestions": {
+  },
+  "editor.quickSuggestions": {
     "strings": true
-},
-"editor.codeActionsOnSave": {
-    "source.organizeImports": true,
-  },}
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  }
+}
