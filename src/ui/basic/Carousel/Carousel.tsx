@@ -1,8 +1,8 @@
-import Card from "../Card/Card";
 import { GameStateContext } from "@/context/useGameStateContext";
 import { getSsenseImageUrl, getSsenseProductUrl } from "@/helpers";
 import { MongoProduct } from "@/interfaces";
 import { useContext, useEffect, useRef, useState } from "react";
+import Card from "../Card/Card";
 
 type CarouselProps = {
   productsSeen: MongoProduct[];
@@ -12,48 +12,44 @@ type CarouselProps = {
 
 const Carousel = ({ productsSeen }: CarouselProps) => {
   const maxScrollWidth = useRef(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [scrollLeft, setSetScrollLeft] = useState(0);
   const carousel = useRef<any>(null);
 
   const { isGameOver } = useContext(GameStateContext);
 
   const movePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevState) => prevState - 1);
+    if (carousel.current !== null && scrollLeft > 0) {
+      const newScrollLeft = Math.max(
+        0,
+        scrollLeft - carousel.current.offsetWidth
+      );
+      setSetScrollLeft(newScrollLeft);
+      carousel.current.scrollLeft = newScrollLeft;
     }
   };
 
   const moveNext = () => {
-    // We cap the number of times we can moveNext based on how many offsetWidths we've moved so far
-    if (
-      carousel.current !== null &&
-      carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current
-    ) {
-      setCurrentIndex((prevState) => prevState + 1);
+    if (carousel.current !== null && scrollLeft <= maxScrollWidth.current) {
+      const newScrollLeft = Math.min(
+        maxScrollWidth.current,
+        scrollLeft + carousel.current.offsetWidth
+      );
+      setSetScrollLeft(newScrollLeft);
+      carousel.current.scrollLeft = newScrollLeft;
     }
   };
 
   const isDisabled = (direction: string) => {
     if (direction === "prev") {
-      return currentIndex <= 0;
+      return scrollLeft == 0;
     }
 
     if (direction === "next" && carousel.current !== null) {
-      return (
-        carousel.current.offsetWidth * currentIndex >= maxScrollWidth.current
-      );
+      return scrollLeft >= maxScrollWidth.current;
     }
 
     return false;
   };
-
-  // Move the scroll one offset
-  // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollLeft
-  useEffect(() => {
-    if (carousel !== null && carousel.current !== null) {
-      carousel.current.scrollLeft = carousel.current.offsetWidth * currentIndex;
-    }
-  }, [currentIndex]);
 
   // On first render get the carousel element's total scrollable content width minus the currently visible offset width value
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollWidth
@@ -86,14 +82,9 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
         ref={carousel}
         className="carousel-container relative z-0 flex touch-pan-x snap-x snap-mandatory gap-5 overflow-y-hidden overflow-x-scroll scroll-smooth"
         // https://stackoverflow.com/questions/68658249/how-to-do-react-horizontal-scroll-using-mouse-wheel
-        onWheel={(e) => {
-          if (e.deltaY === 0) return;
-          e.preventDefault();
-          const el = e.currentTarget;
-          el.scrollTo({
-            left: e.deltaY < 0 ? el.scrollLeft - 250 : el.scrollLeft + 250,
-            behavior: "auto",
-          });
+        onScroll={(el) => {
+          const newScrollLeft = (el.target as HTMLElement).scrollLeft;
+          setSetScrollLeft(newScrollLeft);
         }}
       >
         {productsSeen.map((product, index) => {
@@ -104,7 +95,7 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
             >
               <a
                 href={getSsenseProductUrl(product.productUrl)}
-                className="z-0 block h-[70vh] w-[175px] lg:w-[250px]"
+                className="z-0 block h-[65vh] w-[175px] lg:w-[250px]"
                 target="_blank"
                 rel="noreferrer noopener"
               >
