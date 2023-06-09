@@ -21,7 +21,7 @@ const SelectProductsPageCardGroup = ({
   const { isGameOver } = useContext(GameStateContext);
   return (
     <div className="flex h-screen flex-col items-center justify-center">
-      <div className="mb-8 mt-6 text-xl font-black tracking-widest md:text-2xl">
+      <div className="mb-8 mt-6 font-favorit text-xl font-black tracking-widest md:text-4xl">
         HIGHER OR LOWER
       </div>
       <div className=" grid  h-[90vh] w-[80vw] grid-cols-2 gap-5 md:h-[70vh] md:w-[70vw] md:gap-10 xl:w-[60vw]">

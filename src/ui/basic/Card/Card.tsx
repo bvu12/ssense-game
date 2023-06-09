@@ -20,7 +20,7 @@ const Card = ({
   clickable_element,
 }: CardProps) => {
   return (
-    <div className="h-[95%] w-full rounded object-fill shadow-xl">
+    <div className="h-[95%] w-full rounded object-fill font-favorit shadow-xl">
       <div
         style={{ backgroundImage: `url(${image_url})` }}
         className={
@@ -41,8 +41,8 @@ const Card = ({
         <div
           className={
             isGameOver
-              ? "text-md mb-2 font-bold"
-              : "text-md mb-2 font-bold md:text-lg xl:text-xl"
+              ? "text-md mb-2 font-bold uppercase"
+              : "text-md mb-2 font-bold uppercase md:text-lg xl:text-xl"
           }
         >
           {brand_name}
@@ -56,7 +56,15 @@ const Card = ({
         >
           {product_title}
         </p>
-        {price && <p>{price}</p>}
+        {price && (
+          <p
+            className={
+              isGameOver ? "font-favorit-light" : "font-favorit-light text-lg"
+            }
+          >
+            {price}
+          </p>
+        )}
       </div>
     </div>
   );

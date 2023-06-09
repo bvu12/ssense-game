@@ -15,13 +15,13 @@ const ClickableButtonGroup = ({
     <div className="flex h-full flex-col items-center justify-center gap-10">
       <button
         onClick={on_click_higher}
-        className="rounded border border-slate-500 bg-black bg-opacity-[65%] px-4 py-2 text-xl font-bold text-white transition delay-150 duration-300 ease-in-out hover:-translate-y-4 hover:scale-110 hover:bg-opacity-100"
+        className="rounded border border-slate-500 bg-black bg-opacity-[65%] px-4 py-2 font-favorit text-xl font-medium text-white transition delay-150 duration-300 ease-in-out hover:-translate-y-4 hover:scale-110 hover:bg-opacity-100"
       >
         Guess Higher
       </button>
       <button
         onClick={on_click_lower}
-        className="rounded border border-slate-500 bg-black bg-opacity-[65%] px-4 py-2 text-xl font-bold text-white transition delay-150 duration-300 ease-in-out hover:-translate-y-4 hover:scale-110 hover:bg-opacity-100"
+        className="rounded border border-slate-500 bg-black bg-opacity-[65%] px-4 py-2 font-favorit text-xl font-medium text-white transition delay-150 duration-300 ease-in-out hover:-translate-y-4 hover:scale-110 hover:bg-opacity-100"
       >
         Guess Lower
       </button>
