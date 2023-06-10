@@ -1,11 +1,15 @@
-import SelectProductsPageCardGroup from "./SelectProductsPageCardGroup";
-import SelectProductsPageTransitionCheckmark from "./SelectProductsPageTransitionCheckmark";
 import { GameStateContext } from "@/context/useGameStateContext";
 import { MongoProduct } from "@/interfaces";
 import { useContext, useState } from "react";
 import { useTimeoutFn } from "react-use";
+import SelectProductsPageCardGroup from "./SelectProductsPageCardGroup";
+import SelectProductsPageTransitionCheckmark from "./SelectProductsPageTransitionCheckmark";
 
-const SelectProductsPage = ({}) => {
+type SelectProductsPageProps = {
+  fetchMoreProducts: () => void;
+};
+
+const SelectProductsPage = ({ fetchMoreProducts }: SelectProductsPageProps) => {
   const { setIsGameOver, products, productIndex, setProductIndex } =
     useContext(GameStateContext);
 
@@ -34,6 +38,7 @@ const SelectProductsPage = ({}) => {
       setIsShowingTransition((isShowingTransition) => !isShowingTransition);
       resetIsShowingTransition();
       setProductIndex((previousProductIndex) => previousProductIndex + 1);
+      fetchMoreProducts();
     }
   }
 

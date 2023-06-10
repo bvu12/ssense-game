@@ -1,7 +1,7 @@
-import GameOverPage from "../GameOverPage/GameOverPage";
-import SelectProductsPage from "../SelectProductsPage/SelectProductsPage";
 import { GameStateContext } from "@/context/useGameStateContext";
 import { useContext } from "react";
+import GameOverPage from "../GameOverPage/GameOverPage";
+import SelectProductsPage from "../SelectProductsPage/SelectProductsPage";
 
 type SsenseHigherLowerGameProps = {
   resetGame: {
@@ -9,9 +9,13 @@ type SsenseHigherLowerGameProps = {
     resetGameWomens: () => void;
     resetGameMens: () => void;
   };
+  fetchMoreProducts: () => void;
 };
 
-const SsenseHigherLowerGame = ({ resetGame }: SsenseHigherLowerGameProps) => {
+const SsenseHigherLowerGame = ({
+  resetGame,
+  fetchMoreProducts,
+}: SsenseHigherLowerGameProps) => {
   const { isGameOver, products, productIndex } = useContext(GameStateContext);
 
   return (
@@ -22,7 +26,7 @@ const SsenseHigherLowerGame = ({ resetGame }: SsenseHigherLowerGameProps) => {
           resetGame={resetGame}
         />
       ) : (
-        <SelectProductsPage />
+        <SelectProductsPage fetchMoreProducts={fetchMoreProducts} />
       )}
     </>
   );

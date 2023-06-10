@@ -4,12 +4,10 @@ import { GameStateContext, useGameState } from "@/context/useGameStateContext";
 import { ProductType, getRandomProductAPISuffix } from "@/helpers";
 import { Spinner } from "@/ui/basic/Spinner/Spinner";
 import SsenseHigherLowerGame from "@/ui/presentation/SsenseHigherLowerGame/SsenseHigherLowerGame";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const {
-    isLoading,
-    setIsLoading,
     isGameOver,
     setIsGameOver,
     products,
@@ -18,7 +16,11 @@ export default function Home() {
     setProductIndex,
   } = useGameState();
 
-  const startGame = async (productAPISuffix: string) => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [gameType, setGameType] = useState<string>();
+
+  const fetchProducts = async (productAPISuffix: string) => {
+    setIsLoading(true);
     const res = await fetch(
       "http://localhost:3000/api/products/" + productAPISuffix
     );
@@ -27,6 +29,20 @@ export default function Home() {
     setProducts(data);
     setIsLoading(false);
     setIsGameOver(false);
+  };
+
+  const fetchMoreProducts = () => {
+    // As the game progresses, keep fetching more products on an interval in the background
+    if (productIndex > 0 && productIndex % 5 == 0) {
+      fetch("http://localhost:3000/api/products/" + gameType)
+        .then((res) => res.json())
+        .then((data) => setProducts((products) => [...products, ...data]));
+    }
+  };
+
+  const startGame = (productAPISuffix: string) => {
+    setGameType(productAPISuffix);
+    fetchProducts(productAPISuffix);
   };
 
   useEffect(() => {
@@ -54,8 +70,6 @@ export default function Home() {
   return (
     <GameStateContext.Provider
       value={{
-        isLoading,
-        setIsLoading,
         isGameOver,
         setIsGameOver,
         products,
@@ -67,7 +81,10 @@ export default function Home() {
       {isLoading ? (
         <Spinner />
       ) : (
-        <SsenseHigherLowerGame resetGame={resetGame} />
+        <SsenseHigherLowerGame
+          resetGame={resetGame}
+          fetchMoreProducts={fetchMoreProducts}
+        />
       )}
     </GameStateContext.Provider>
   );

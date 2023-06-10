@@ -19,7 +19,7 @@ export async function getProducts(match: any) {
 
   const products = await db
     .collection<MongoProduct>("products")
-    .aggregate([match, { $sample: { size: 50 } }])
+    .aggregate([match, { $sample: { size: 10 } }])
     .toArray();
 
   return products;

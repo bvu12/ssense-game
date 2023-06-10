@@ -3,7 +3,6 @@ import { createContext, useState } from "react";
 
 export const useGameState = () => {
   // Game state
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
 
   // Products
@@ -11,8 +10,6 @@ export const useGameState = () => {
   const [productIndex, setProductIndex] = useState<number>(0);
 
   return {
-    isLoading,
-    setIsLoading,
     isGameOver,
     setIsGameOver,
     products,
