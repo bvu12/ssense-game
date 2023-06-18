@@ -61,7 +61,7 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
   }, []);
 
   return (
-    <div className="carousel relative m-4 max-w-xs overflow-hidden sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
+    <div className="carousel relative m-4 max-w-xs overflow-x-hidden sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
       <div className="carousel-button top left absolute flex h-full w-full justify-between">
         <button
           onClick={movePrev}
@@ -80,7 +80,7 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
       </div>
       <div
         ref={carousel}
-        className="carousel-container relative z-0 flex touch-pan-x snap-x snap-mandatory gap-5 overflow-y-hidden overflow-x-scroll scroll-smooth"
+        className="carousel-container relative z-0 flex touch-pan-x snap-x snap-mandatory gap-5 overflow-y-hidden overflow-x-scroll scroll-smooth px-8"
         // https://stackoverflow.com/questions/68658249/how-to-do-react-horizontal-scroll-using-mouse-wheel
         onScroll={(el) => {
           const newScrollLeft = (el.target as HTMLElement).scrollLeft;
@@ -95,7 +95,7 @@ const Carousel = ({ productsSeen }: CarouselProps) => {
             >
               <a
                 href={getSsenseProductUrl(product.productUrl)}
-                className="z-0 block h-[65vh] w-[175px] lg:w-[250px]"
+                className="z-0 block h-[75vh] max-h-96 w-[175px] lg:w-[250px]"
                 target="_blank"
                 rel="noreferrer noopener"
               >
