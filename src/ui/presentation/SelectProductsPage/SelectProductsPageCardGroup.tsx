@@ -24,7 +24,7 @@ const SelectProductsPageCardGroup = ({
       <div className="my-4 font-favorit text-xl font-black tracking-widest md:text-4xl">
         HIGHER OR LOWER
       </div>
-      <div className="grid h-[90vh] w-[80vw] grid-cols-2 gap-5 md:h-[70vh] md:w-[70vw] md:gap-10 xl:w-[60vw]">
+      <div className="mb-[50px] grid h-[90vh] w-[80vw] grid-cols-2 gap-5 md:h-[70vh] md:w-[70vw] md:gap-10 xl:w-[60vw]">
         <Card
           image_url={getSsenseImageUrl(givenProduct.imageUrl)}
           brand_name={givenProduct.brand}
