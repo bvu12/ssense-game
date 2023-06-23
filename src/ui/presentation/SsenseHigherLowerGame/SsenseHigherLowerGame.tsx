@@ -5,6 +5,7 @@ import SelectProductsPage from "../SelectProductsPage/SelectProductsPage";
 
 type SsenseHigherLowerGameProps = {
   resetGame: {
+    resetGameSameSettings: () => void;
     resetGameMixed: () => void;
     resetGameWomens: () => void;
     resetGameMens: () => void;

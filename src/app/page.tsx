@@ -51,6 +51,10 @@ export default function Home() {
     startGame(getRandomProductAPISuffix());
   }, []);
 
+  const resetGameSameSettings = () => {
+    startGame(gameType!);
+  };
+
   const resetGameMixed = () => {
     startGame(ProductType.MIXED);
   };
@@ -64,6 +68,7 @@ export default function Home() {
   };
 
   const resetGame = {
+    resetGameSameSettings,
     resetGameMixed,
     resetGameWomens,
     resetGameMens,
