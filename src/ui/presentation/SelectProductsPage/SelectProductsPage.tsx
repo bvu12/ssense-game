@@ -3,7 +3,7 @@ import { MongoProduct } from "@/interfaces";
 import { useContext, useState } from "react";
 import { useTimeoutFn } from "react-use";
 import SelectProductsPageCardGroup from "./SelectProductsPageCardGroup";
-import SelectProductsPageTransitionCheckmark from "./SelectProductsPageTransitionCheckmark";
+import SelectProductsPageTransitionAnimation from "./SelectProductsPageTransitionAnimation";
 
 type SelectProductsPageProps = {
   fetchMoreProducts: () => void;
@@ -11,27 +11,33 @@ type SelectProductsPageProps = {
 
 const SelectProductsPage = ({ fetchMoreProducts }: SelectProductsPageProps) => {
   const {
+    isGameOver,
     setIsGameOver,
     products,
     productIndex,
     setProductIndex,
-    score,
     setScore,
   } = useContext(GameStateContext);
 
   const givenProduct = products[productIndex];
   const unknownProduct = products[productIndex + 1];
 
-  const [isShowingTransition, setIsShowingTransition] = useState(false);
+  const TRANSITION_TIME_MS = 500;
+  const [isShowingTransition, setIsShowingTransition] =
+    useState<boolean>(false);
+  const [transitionGameOver, setTransitionGameOver] =
+    useState<boolean>(isGameOver); // Decouples from the parent GameOver state so we can display an animation before moving to the GAMEOVER screen
   let [, , resetIsShowingTransition] = useTimeoutFn(
     () => setIsShowingTransition(false),
-    1000
+    TRANSITION_TIME_MS
   );
 
   function guessHandler(comparator: {
     (a: number, b: number): boolean;
     (arg0: number, arg1: number): any;
   }) {
+    setIsShowingTransition((isShowingTransition) => !isShowingTransition);
+    resetIsShowingTransition();
     if (
       !comparator(
         getNumericPrice(unknownProduct.price),
@@ -39,14 +45,13 @@ const SelectProductsPage = ({ fetchMoreProducts }: SelectProductsPageProps) => {
       ) ||
       isNoMoreProducts(products, productIndex)
     ) {
-      setIsGameOver(true);
+      setTransitionGameOver(true);
+      setTimeout(() => setIsGameOver(true), TRANSITION_TIME_MS * 1.1);
     } else {
       setScore((prevScore) => ({
         currentScore: prevScore.currentScore + 1,
         hiScore: Math.max(prevScore.hiScore, prevScore.currentScore + 1),
       }));
-      setIsShowingTransition((isShowingTransition) => !isShowingTransition);
-      resetIsShowingTransition();
       setProductIndex((previousProductIndex) => previousProductIndex + 1);
       fetchMoreProducts();
     }
@@ -70,8 +75,9 @@ const SelectProductsPage = ({ fetchMoreProducts }: SelectProductsPageProps) => {
         onGuessHigher={onGuessHigher}
         onGuessLower={onGuessLower}
       />
-      <SelectProductsPageTransitionCheckmark
+      <SelectProductsPageTransitionAnimation
         isShowingTransition={isShowingTransition}
+        isGameOver={transitionGameOver}
       />
     </div>
   );
