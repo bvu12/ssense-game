@@ -10,8 +10,14 @@ type SelectProductsPageProps = {
 };
 
 const SelectProductsPage = ({ fetchMoreProducts }: SelectProductsPageProps) => {
-  const { setIsGameOver, products, productIndex, setProductIndex } =
-    useContext(GameStateContext);
+  const {
+    setIsGameOver,
+    products,
+    productIndex,
+    setProductIndex,
+    score,
+    setScore,
+  } = useContext(GameStateContext);
 
   const givenProduct = products[productIndex];
   const unknownProduct = products[productIndex + 1];
@@ -35,6 +41,10 @@ const SelectProductsPage = ({ fetchMoreProducts }: SelectProductsPageProps) => {
     ) {
       setIsGameOver(true);
     } else {
+      setScore((prevScore) => ({
+        currentScore: prevScore.currentScore + 1,
+        hiScore: Math.max(prevScore.hiScore, prevScore.currentScore + 1),
+      }));
       setIsShowingTransition((isShowingTransition) => !isShowingTransition);
       resetIsShowingTransition();
       setProductIndex((previousProductIndex) => previousProductIndex + 1);

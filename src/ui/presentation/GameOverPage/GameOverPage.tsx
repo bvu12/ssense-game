@@ -1,5 +1,7 @@
+import { GameStateContext } from "@/context/useGameStateContext";
 import { MongoProduct } from "@/interfaces";
 import Carousel from "@/ui/basic/Carousel/Carousel";
+import { useContext } from "react";
 
 type GameOverPageProps = {
   productsSeen: MongoProduct[];
@@ -12,10 +14,11 @@ type GameOverPageProps = {
 };
 
 const GameOverPage = ({ productsSeen, resetGame }: GameOverPageProps) => {
+  const { score } = useContext(GameStateContext);
   return (
     <div className="flex h-screen flex-col items-center justify-center">
       <div className="my-2 font-favorit text-xl font-black tracking-widest md:my-4 md:text-4xl">
-        GAMEOVER
+        GAMEOVER / HISCORE: {score.hiScore}
       </div>
       <div className="flex gap-2 md:gap-5">
         <button

@@ -18,6 +18,8 @@ export default function Home() {
     setProducts,
     productIndex,
     setProductIndex,
+    score,
+    setScore,
   } = useGameState();
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -45,6 +47,10 @@ export default function Home() {
   const startGame = (productAPISuffix: string) => {
     setGameType(productAPISuffix);
     fetchProducts(productAPISuffix);
+    setScore((prevScore) => ({
+      currentScore: 0,
+      hiScore: prevScore.hiScore,
+    }));
   };
 
   useEffect(() => {
@@ -83,6 +89,8 @@ export default function Home() {
         setProducts,
         productIndex,
         setProductIndex,
+        score,
+        setScore,
       }}
     >
       {isLoading ? (
