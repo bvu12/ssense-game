@@ -1,13 +1,10 @@
-import { ReactNode } from "react";
-
 export type CardProps = {
   image_url: string;
   brand_name: string;
   product_title: string;
   isGameOver: boolean;
   price?: string;
-  is_clickable?: boolean;
-  clickable_element?: ReactNode;
+  on_click?: () => void;
 };
 
 const Card = ({
@@ -16,11 +13,13 @@ const Card = ({
   product_title,
   isGameOver,
   price,
-  is_clickable,
-  clickable_element,
+  on_click,
 }: CardProps) => {
   return (
-    <div className="h-[95%] w-full rounded object-fill font-favorit shadow-xl">
+    <div
+      className="h-[95%] w-full cursor-pointer rounded object-fill font-favorit shadow-xl"
+      onClick={on_click}
+    >
       <div
         style={{ backgroundImage: `url(${image_url})` }}
         className={
@@ -28,9 +27,7 @@ const Card = ({
             ? "h-1/2 w-full rounded-md bg-contain bg-center bg-no-repeat md:h-2/3"
             : "h-1/2 w-full rounded-md bg-contain bg-center bg-no-repeat md:h-2/3 xl:h-3/4"
         }
-      >
-        {is_clickable && clickable_element}
-      </div>
+      ></div>
       <div
         className={
           isGameOver

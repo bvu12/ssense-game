@@ -2,7 +2,6 @@ import { GameStateContext } from "@/context/useGameStateContext";
 import { getSsenseImageUrl } from "@/helpers";
 import { MongoProduct } from "@/interfaces";
 import Card from "@/ui/basic/Card/Card";
-import ClickableCard from "@/ui/basic/Card/ClickableCard";
 import { useContext } from "react";
 
 export type SelectProductsPageCardGroupProps = {
@@ -22,7 +21,7 @@ const SelectProductsPageCardGroup = ({
   return (
     <div className="flex h-screen flex-col items-center justify-center">
       <div className="my-4 font-favorit text-xl font-black tracking-widest md:text-4xl">
-        HIGHER OR LOWER
+        select the more expensive product
       </div>
       <div className="mb-[50px] grid h-[90vh] w-[80vw] grid-cols-2 gap-5 md:h-[70vh] md:w-[70vw] md:gap-10 xl:w-[60vw]">
         <Card
@@ -30,15 +29,15 @@ const SelectProductsPageCardGroup = ({
           brand_name={givenProduct.brand}
           product_title={givenProduct.productName}
           price={givenProduct.price}
+          on_click={() => onGuessLower()}
           isGameOver={isGameOver}
         />
-        <ClickableCard
+        <Card
           image_url={getSsenseImageUrl(unknownProduct.imageUrl)}
           brand_name={unknownProduct.brand}
           product_title={unknownProduct.productName}
-          is_clickable={true}
-          on_click_higher={() => onGuessHigher()}
-          on_click_lower={() => onGuessLower()}
+          price={""}
+          on_click={() => onGuessHigher()}
           isGameOver={isGameOver}
         />
       </div>
