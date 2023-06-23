@@ -17,7 +17,11 @@ const Card = ({
 }: CardProps) => {
   return (
     <div
-      className="h-[95%] w-full cursor-pointer rounded object-fill font-favorit shadow-xl"
+      className={
+        isGameOver
+        ? "h-[95%] w-full cursor-pointer rounded object-fill font-favorit shadow-xl"
+        : "h-full w-full cursor-pointer rounded object-fill font-favorit shadow-xl"
+      }
       onClick={on_click}
     >
       <div
@@ -25,14 +29,14 @@ const Card = ({
         className={
           isGameOver
             ? "h-1/2 w-full rounded-md bg-contain bg-center bg-no-repeat md:h-2/3"
-            : "h-1/2 w-full rounded-md bg-contain bg-center bg-no-repeat md:h-2/3 xl:h-3/4"
+            : "h-[40%] w-full rounded-md bg-contain bg-center bg-no-repeat md:h-2/3 xl:h-3/4"
         }
       ></div>
       <div
         className={
           isGameOver
             ? "flex h-1/2 flex-col break-words px-4 py-3 md:h-1/3"
-            : "flex h-1/2 flex-col break-words px-6 py-4 md:h-1/3 xl:h-1/4"
+            : "flex h-[60%] flex-col break-words p-3 md:h-1/3 md:px-6 md:py-4 xl:h-1/4"
         }
       >
         <div

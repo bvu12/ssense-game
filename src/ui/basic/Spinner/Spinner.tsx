@@ -1,6 +1,6 @@
 export const Spinner = () => {
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh] items-center justify-center">
       <div className="m-auto ">
         <div role="status">
           <svg

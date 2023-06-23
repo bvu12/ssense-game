@@ -16,7 +16,7 @@ type GameOverPageProps = {
 const GameOverPage = ({ productsSeen, resetGame }: GameOverPageProps) => {
   const { score } = useContext(GameStateContext);
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
+    <div className="flex supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh] flex-col items-center justify-center">
       <div className="my-2 font-favorit text-xl font-black tracking-widest md:my-4 md:text-4xl">
         GAMEOVER / HISCORE: {score.hiScore}
       </div>

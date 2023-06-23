@@ -19,11 +19,11 @@ const SelectProductsPageCardGroup = ({
 }: SelectProductsPageCardGroupProps) => {
   const { isGameOver } = useContext(GameStateContext);
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
-      <div className="my-4 font-favorit text-xl font-black tracking-widest md:text-4xl">
+    <div className="flex supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh] flex-col items-center justify-center">
+      <div className="mb-2 font-favorit text-xl font-black tracking-widest md:text-4xl">
         select the more expensive product
       </div>
-      <div className="mb-[50px] grid h-[90vh] w-[80vw] grid-cols-2 gap-5 md:h-[70vh] md:w-[70vw] md:gap-10 xl:w-[60vw]">
+      <div className="grid h-[75vh] w-[90vw] grid-cols-2 gap-4 md:h-[70vh] md:w-[70vw] md:gap-10 xl:w-[60vw]">
         <Card
           image_url={getSsenseImageUrl(givenProduct.imageUrl)}
           brand_name={givenProduct.brand}
