@@ -2,9 +2,10 @@
 
 import { GameStateContext, useGameState } from "@/context/useGameStateContext";
 import { ProductType, getRandomProductAPISuffix } from "@/helpers";
+import { useEffect, useState } from "react";
+
 import { Spinner } from "@/ui/basic/Spinner/Spinner";
 import SsenseHigherLowerGame from "@/ui/presentation/SsenseHigherLowerGame/SsenseHigherLowerGame";
-import { useEffect, useState } from "react";
 
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
@@ -26,13 +27,10 @@ export default function Home() {
   const [gameType, setGameType] = useState<string>();
 
   const fetchProducts = async (productAPISuffix: string) => {
-    setIsLoading(true);
     const res = await fetch(`${baseUrl}/api/products/${productAPISuffix}`);
     const data = await res.json();
     setProductIndex(0);
     setProducts(data);
-    setIsLoading(false);
-    setIsGameOver(false);
   };
 
   const fetchMoreProducts = () => {
@@ -45,12 +43,16 @@ export default function Home() {
   };
 
   const startGame = (productAPISuffix: string) => {
-    setGameType(productAPISuffix);
-    fetchProducts(productAPISuffix);
-    setScore((prevScore) => ({
-      currentScore: 0,
-      hiScore: prevScore.hiScore,
-    }));
+    setIsLoading(true);
+    fetchProducts(productAPISuffix).then(() => {
+      setGameType(productAPISuffix);
+      setScore((prevScore) => ({
+        currentScore: 0,
+        hiScore: prevScore.hiScore,
+      }));
+      setIsGameOver(false);
+      setIsLoading(false);
+    });
   };
 
   useEffect(() => {
